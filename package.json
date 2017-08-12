@@ -1,0 +1,31 @@
+{
+  "name": "sui-vue",
+  "version": "0.1.0",
+  "description": "A fully Vue.js powered version of Semantic UI",
+  "main": "dist/semantic-ui-vue.common.js",
+  "module": "dist/semantic-ui-vue.esm.js",
+  "scripts": {
+    "watch": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "semantic",
+    "ui",
+    "vue",
+    "vue.js"
+  ],
+  "author": "ifaxity",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.4.2"
+  },
+  "devDependencies": {
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-plugin-vue": "^2.4.1",
+    "rollup-watch": "^4.3.1"
+  }
+}
