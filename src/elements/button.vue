@@ -47,7 +47,6 @@ export default {
       if(this.toggle) {
         this.toggled = !this.toggled;
       }
-
       this.$emit("click", e);
     }
   },
