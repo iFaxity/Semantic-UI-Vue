@@ -1,22 +1,20 @@
 <template lang="pug">
-.ui(:class=`[
+button.ui(:is="as", :class=`[
   {active: isActive, disabled, loading}, size, social,
   {primary, secondary, positive, negative, basic}, color,
-  getAttach, {inverted,compact, fluid, circular, toggle},
-  getFloat, getLabeled, {icon}, getAnimated, "button"]` @click="click" tabindex="0"
-  )
+  getAttach, {inverted, compact, fluid, circular, toggle},
+  getFloat, getLabeled, {icon}, getAnimated, "button"]` @click="click" v-on="$listeners" v-bind="$attrs")
   template(v-if="getAnimated")
     .visible.content
       slot
     .hidden.content
-      slot(name="hidden" class="kek")
+      slot(name="hidden")
   template(v-else)
     slot
 
 </template>
 
 <script>
-//TODO: support button and a (href buttons)
 import { Color, Size, Attach, Float } from "../mixins";
 
 export default {
@@ -37,7 +35,11 @@ export default {
     inverted: Boolean,
     icon: Boolean,
     toggle: Boolean,
-    
+
+    as: {
+      type: String,
+      default: "button"
+    },
     animated: String,
     social: String,
     labeled: String,
@@ -46,12 +48,14 @@ export default {
     click(e) {
       if(this.toggle) {
         this.toggled = !this.toggled;
+        this.$emit("toggle", this.toggled);
       }
+
       this.$emit("click", e);
     }
   },
   data() {
-    return {toggled: false};
+    return { toggled: false };
   },
   computed: {
     isActive() {

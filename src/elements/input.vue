@@ -1,6 +1,6 @@
 <template lang="pug">
 .ui(:class=`[{disabled, fluid, transparent, inverted}, getSize, getLabeled, getIcon, "input", {error, focus, loading}]`)
-  input(:type="type" v-model="input" v-bind="$attr" v-on="$listeners")
+  input(v-model="input" v-bind="$attrs" v-on="$listeners")
   slot
 </template>
 
@@ -10,6 +10,7 @@ import { Size } from "../mixins";
 export default {
   name: "UiInput",
   mixins: [Size()],
+  inheritAttrs: false,
   props: {
     focus: Boolean,
     loading: Boolean,
@@ -21,12 +22,7 @@ export default {
 
     labeled: String,
     icon: String,
-
-    value: String,
-    type: {
-      type: String,
-      default: "text"
-    }
+    value: String
   },
   computed: {
     input: {

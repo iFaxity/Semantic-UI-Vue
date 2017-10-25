@@ -5,8 +5,8 @@
   "main": "dist/semantic-ui-vue.common.js",
   "module": "dist/semantic-ui-vue.esm.js",
   "scripts": {
-    "watch": "rollup -c -w",
-    "build": "rollup -c"
+    "start": "node www/server.js",
+    "build": "rollup -c && rollup -c www/rollup.config.js"
   },
   "keywords": [
     "semantic",
@@ -17,6 +17,7 @@
   "author": "ifaxity",
   "license": "MIT",
   "dependencies": {
+    "rollup-plugin-json": "^2.3.0",
     "vue": "^2.4.2"
   },
   "devDependencies": {
@@ -25,7 +26,6 @@
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "rollup-plugin-vue": "^2.4.1",
-    "rollup-watch": "^4.3.1"
+    "rollup-plugin-vue": "^2.4.1"
   }
 }

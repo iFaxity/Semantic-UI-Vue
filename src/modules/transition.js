@@ -13,27 +13,33 @@ export default {
   },
   render(h, ctx) {
     const {props, data} = ctx;
-    let show, hide, duration = props.duration;
+    let show, hide, showing, hidden;
+    let duration = props.duration;
 
     if (data && data.on) {
       show = data.on.show;
+      showing = data.on.showing;
       hide = data.on.hide;
+      hidden = data.on.hidden;
     }
 
     // Modify the props and events to pass on to the vue transition component
     data.props = {
       type: "animation",
       enterActiveClass: `animating ${props.name} in`,
-      leaveActiveClass: `transition animating ${props.name} out`
+      leaveActiveClass: `transition animating ${props.name} out`,
+      enterClass: null,
+      leaveClass: null,
+      enterToClass: null,
+      leaveToClass: null
     };
     data.on = {
       beforeEnter(el) {
-        el.classList.add("transition")
-        el.classList.add("visible");
+        el.classList.add("transition", "visible");
         if(duration) {
           el.style.animationDuration = duration;
         }
-
+        
         if (typeof show === "function") {
           show(el);
         }
@@ -42,10 +48,18 @@ export default {
         if (duration) {
           el.style.animationDuration = "";
         }
+
+        if (typeof showing === "function") {
+          showing(el);
+        }
       },
       beforeLeave(el) {
         if (duration) {
           el.style.animationDuration = duration;
+        }
+
+        if (typeof hide === "function") {
+          hide(el);
         }
       },
       afterLeave(el) {
@@ -54,8 +68,8 @@ export default {
           el.style.animationDuration = "";
         }
 
-        if (typeof hide === "function") {
-          hide(el);
+        if (typeof hidden === "function") {
+          hidden(el);
         }
       }
     };

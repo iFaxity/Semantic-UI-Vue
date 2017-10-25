@@ -14,7 +14,7 @@ export const TRANSITIONS = [
   "slide down", "slide up", "slide left", "slide right",
   "scale", "drop", "jiggle", "flash", "shake", "pulse", "tada", "bounce",
   "horizontal flip", "vertical flip",
-  "browse", "browse right",
+  "browse", "browse right", "uncover"
 ];
 
 export const WIDTHS = [

@@ -20,25 +20,27 @@ if (process.env.NODE_ENV === "production") {
 }
 
 export default {
-  entry: "src/index.js",
+  input: "src/index.js",
   plugins,
-  targets: [
+  output: [
     {
-      dest: "dist/semantic-ui-vue.js",
-      moduleName: "semantic-ui-vue",
+      file: "dist/semantic-ui-vue.js",
+      name: "semantic-ui-vue",
       format: "umd",
-      sourceMap: true
+      sourcemap: true
     },
     {
-      dest: "dist/semantic-ui-vue.esm.js",
+      file: "dist/semantic-ui-vue.esm.js",
       format: "es",
-      sourceMap: true
+      sourcemap: true
     },
     {
-      dest: "dist/semantic-ui-vue.common.js",
+      file: "dist/semantic-ui-vue.common.js",
       format: "cjs",
-      sourceMap: true
+      sourcemap: true
     }
   ],
-  sourceMap: true,
+  watch: {
+    exclude: "node_modules/**"
+  }
 };

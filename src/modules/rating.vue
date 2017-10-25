@@ -1,7 +1,7 @@
 <template lang="pug">
-.ui(:class=`[size, {star, heart}, "rating", {disabled}]` @mouseleave="mouseLeave" @mouseover="mouseOver")
-  template(v-for="value in values")
-    i.icon(:class=`{active: value <= rating}` @click="click")
+.ui(:class=`[size, {star, heart}, "rating", {disabled}]` @mouseleave="onMouseLeave" @mouseover="onMouseOver")
+  template(v-for="value in ratings")
+    i.icon(:class=`{active: value <= model}` @click="onClick(value)")
 </template>
 
 <script>
@@ -29,47 +29,42 @@ export default {
     }
   },
   methods: {
-    click() {
-      if(this.disabled) {
-        return;
-      }
-      this.input = this.value;
+    onClick(value) {
+      if(this.disabled) return;
+      this.model = this.model === value ? 0 : value;
     },
-    mouseLeave(e) {
-      if(this.disabled) {
-        return;
-      }
+    onMouseLeave(e) {
+      if(this.disabled) return;
 
       const {childNodes} = e.target;
       childNodes.forEach(child => child.classList.remove("selected"));
     },
-    mouseOver(e) {
-      if(this.disabled) {
-        return;
-      }
+    onMouseOver(e) {
+      if(this.disabled) return;
 
       const {childNodes} = e.target.parentNode;
-      childNodes.reduce((found, child) => {
+      let found = false;
+
+      childNodes.forEach(child => {
         if(found) {
           child.classList.remove("selected");
         } else {
-          found = child === target;
+          found = child === e.target;
           child.classList.add("selected");
         }
-        return found;
-      }, false);
+      });
     }
   },
   computed: {
-    input: {
+    model: {
       get() {
-        return this.value;
+        return this.rating;
       },
       set(value) {
         this.$emit("input", value);
       }
     },
-    values() {
+    ratings() {
       const arr = [];
       for(let n = 1; n <= this.maxRating; n++) {
         arr.push(n);

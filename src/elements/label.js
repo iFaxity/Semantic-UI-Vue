@@ -64,7 +64,8 @@ export default {
     const {size, color, basic, horizontal, image, tag, getAttach, getRibbon, getCircular, getPointing, getCorner, floating} = this;
     const data = {
       staticClass: "ui",
-      class: [size, color, { basic, horizontal, image, tag }, getAttach, getRibbon, getCircular, getPointing, getCorner, "label", { floating }]
+      class: [size, color, { basic, horizontal, image, tag }, getAttach, getRibbon, getCircular, getPointing, getCorner, "label", { floating }],
+      on: this.$listeners
     }
 
     if(this.link) {

@@ -13,6 +13,7 @@ import { Inputbox } from "../mixins";
 
 export default {
   name: "UiCheckbox",
+  inheritAttrs: false,
   mixins: [Inputbox(null)]
 };
 </script>

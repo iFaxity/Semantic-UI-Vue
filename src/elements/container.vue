@@ -1,5 +1,6 @@
 <template lang="pug">
 .ui(:class=`[getAlign, {fluid, text}, "container"]`)
+  slot
 </template>
 
 <script>

@@ -12,6 +12,7 @@ import { Inputbox } from "../mixins";
 
 export default {
   name: "UiRadio",
+  inheritAttrs: false,
   mixins: [Inputbox("radio")]
 };
 </script>
